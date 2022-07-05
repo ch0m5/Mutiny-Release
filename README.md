@@ -1,7 +1,7 @@
+#### Important Note: This public repository just contains the final release of the game. The original repository used for its development is private because of copyright regarding the assets used.
+
 # Mutiny!
 Mutiny is a god management game where you handle the resource management of the Piolín, a ship used to transport protesters to prisons throughout the Mediterranean coast. However, the economic crisis is hitting the nation incredibly hard and everything is in short supply, so keeping your crew well sustained will be a tough task.
-
-*Important Note:* This repository holds the final release of the game, but nothing else, as some of its contents are not open source.
 
 ## Download
 You can download the game by clicking this [download link](https://github.com/ch0m5/Mutiny/releases/download/1.0/Mutiny.zip), which will download a zip which contains Mutiny! Extract the game and you are ready to play! Check the README in case you have any doubts on how to play the game!
