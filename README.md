@@ -114,66 +114,66 @@ Every agent has a secondary "part" and nodes that are evaluated constantly in ca
 ### Note
 The game uses a system of "occupied" meta-locations, and so all agents have multiple nodes where they are handled, setting locations as "occupied" and freeing them as soon as the agent starts to go somewhere else. All trees have a heavy use of method-calling to relate procedures to script parameters and other delicate data.
 
-![Prisoner_1](Prisoner_Photo_1.png)
+![Prisoner_1](Web_Contents/Prisoner_Photo_1.png)
 
 In this picture, we can see the part of the Prisoner's tree which evaluates a potential interruption and checks if the state of the agent has changed during its procedure. Both branches are optional, as we're just checking. This part of the tree is present in equal or very similar way in every agent.
 
 ## Prisoner
-![Prisoner_FULL](Prisoner_Photo_FULL.png)
+![Prisoner_FULL](Web_Contents/Prisoner_Photo_FULL.png)
 
 Full Tree
 
-![Prisoner_2](Prisoner_Photo_2.png)
+![Prisoner_2](Web_Contents/Prisoner_Photo_2.png)
 
 This branch handles if the prisoner is hit by a guard at any point, and marks the interruption if so.
 
-![Prisoner_3](Prisoner_Photo_3.png)
+![Prisoner_3](Web_Contents/Prisoner_Photo_3.png)
 
 The "parameter" workflow, priorities from left to right. The Needs_Tree is a workflow that is identical for every agent, so a sub-tree is used which is linked and called from every agent using its own data as parameters.
 
-![Prisoner_4](Prisoner_Photo_4.png)
+![Prisoner_4](Web_Contents/Prisoner_Photo_4.png)
 
 Afraid branch. While a part of the branch attempts to run to a spot and stay there for 10 seconds (left), the constantly running branch from the right interrupts the process as a failure every time the prisoner is seen by a guard.
 
-![Prisoner_5](Prisoner_Photo_5.png)
+![Prisoner_5](Web_Contents/Prisoner_Photo_5.png)
 
 Angry branch. On the top left, we can see that a prisoner has a 25% chance of getting angry during the night, which triggers the following workflow (can also be triggered by other means). The prisoner attempts to flee the ship, but the process is instantly interrupted when he's spotted and instantly becomes afraid. From this photo we can also see the needs branch which is the next priority and will be explained later.
 
-![Prisoner_6](Prisoner_Photo_6.png)
+![Prisoner_6](Web_Contents/Prisoner_Photo_6.png)
 
 Default prisoner actions. When a prisoner has nothing to do, it either wanders around or has a change of protesting. When wandering, the prisoner will join any other protesters he sees on the spot. When protesting, if he or his fellow protesters are not stopped by guards directly (hit -> faints) or indirectly (hit someone else -> afraid) they become angry and attempt to flee the ship on the next iteration of the tree (restart).
 
 ## Guard
-![Guard_FULL](Guard_Photo_FULL.png)
+![Guard_FULL](Web_Contents/Guard_Photo_FULL.png)
 
 Full Tree
 
-![Guard_1](Guard_Photo_1.png)
+![Guard_1](Web_Contents/Guard_Photo_1.png)
 
 Afraid and angry branches. Afraid is just to flee to a spot and wait there for a short time. Angry is to patrol around the place looking for Prisoners and Assistants until he finds one, assaults him to stop being angry (discharge).
 
-![Guard_2](Guard_Photo_2.png)
+![Guard_2](Web_Contents/Guard_Photo_2.png)
 
 In case of alarm, for 30 seconds go search for prisoners and assault them on sight.
 
-![Guard_3](Guard_Photo_3.png)
+![Guard_3](Web_Contents/Guard_Photo_3.png)
 
 Default action for guard, patrolling the map. If the guard finds prisoners protesting while patrolling, he goes up to them. If the guards can see more protesters than guards (including himself), he becomes afraid, which will make him flee in the next tree cycle. Else, if guards equal or overcome the protesters, they chose one and beat him, which makes nearby protesters flee.
 
 ## Assistant
-![Assistant_FULL](Assistant_Photo_FULL.png)
+![Assistant_FULL](Web_Contents/Assistant_Photo_FULL.png)
 
 Full Tree
 
-![Assistant_1](Assistant_Photo_1.png)
+![Assistant_1](Web_Contents/Assistant_Photo_1.png)
 
 The interruption loop of assistant includes becoming afraid of nearby violence, in other words, guards beating someone else who isn't the agent itself.
 
-![Assistant_2](Assistant_Photo_2.png)
+![Assistant_2](Web_Contents/Assistant_Photo_2.png)
 
 Afraid and angry branches. When afraid, the assistant flees to a location and waits for a while. If while waiting more violence occurs, he flees again. When angry, the assistant quits his job and goes to the escape location to leave the ship.
 
-![Assistant_3](Assistant_Photo_3.png)
+![Assistant_3](Web_Contents/Assistant_Photo_3.png)
 
 Assistant-related events and default action. When medical support is asked, the assistant looks for a patient location occupied and goes to the corresponding medical location if it is free. When he arrives, he heals the patient until he's fully healed, or he's left or has fainted/died.
 
